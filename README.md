@@ -5,27 +5,23 @@
 Follow these steps for every lab carefully to access, complete, and submit your assignment.
 
 1.  **Accept the Assignment**
-
     - Open the Lab Assignment Link the professor provided.
-    - Click **"Accept the assignment"**. This will create your personal assignment repository on GitHub under the `OOP-Fall-2025` organization.
-    - You'll be taken to your repository page. Verify that the URL looks like `github.com/OOP-Fall-2025/lab-number-yourusername`.
+    - Click **"Accept the assignment"**. This will create your personal assignment repository on GitHub under organization.
+    - You'll be taken to your repository page. Verify that the URL.
 
 2.  **Clone the Repository to Your Computer**
-
     - On your repository page, click the blue **`<> Code`** button.
     - In the dropdown menu, choose **"Open with GitHub Desktop"**.
     - GitHub Desktop will launch. Choose a preferred local folder on your computer to save the project and click **"Clone"**.
     - If asked "How are you planning on using this fork?", select **"For my own purpose"** and continue.
 
 3.  **Open in VS Code and Start Coding**
-
     - In GitHub Desktop, ensure the "Current repository" is the one for this lab.
     - Click the **"Open in Visual Studio Code"** button.
     - VS Code will open the project folder. You can now begin writing your solutions in the `Lab16.java` file.
 
 4.  **Save and Submit Your Work**
-
-    - **Commit (Save) Changes**: As you work, save your file in VS Code (`Ctrl+S` or `Cmd+S`). To record your progress, go to the **Source Control** tab (the fork icon) on the left sidebar in VS Code. Type a descriptive message in the message box (e.g., "Completed Lab 16") and click **"Commit"**. You must enter a message.
+    - **Commit (Save) Changes**: As you work, save your file in VS Code (`Ctrl+S` or `Cmd+S`). To record your progress, go to the **Source Control** tab (the fork icon) on the left sidebar in VS Code. Type a descriptive message in the message box (e.g., "Finished Task 1 and 2") and click **"Commit"**. You must enter a message.
     - **Push (Submit) to GitHub**: When you are finished with the lab or want to back up your work, go back to GitHub Desktop. Click the **"Push origin"** button at the top of the window. This sends your committed changes from your computer to your GitHub repository online.
 
 5.  **Verify Your Submission**
