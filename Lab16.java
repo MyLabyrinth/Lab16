@@ -1,20 +1,28 @@
-import java.io.*;
+// ============================================
+// LAB 16: File Operations & I/O Exceptions
+// Two systems: Game Saves + Employee Management
+// ============================================
+
+// ============================================
+// TODO: Add all packages required by the code below
+// ============================================
+
 
 public class Lab16 {
     
     public static void main(String[] args) {
         System.out.println("=== LAB 16: FILE OPERATIONS & I/O EXCEPTIONS ===\n");
         
-        // PART 1: Gaming - Game Save System (Writing Operations)
+        // PART 1: Gaming — Game Save System (write-heavy)
         part1();
         
-        // PART 2: Business - Employee Management (Reading & File Management)
+        // PART 2: Business — Employee Management (read-heavy)
         part2();
     }
     
     /**
-     * PART 1: Gaming - Game Save System
-     * Practice: File creation, FileWriter, BufferedWriter, appending, directory management
+     * PART 1: Game Save System
+     * Practices: file creation, writing, appending, directory setup, try-catch-finally
      */
     public static void part1() {
         System.out.println("--- Part 1: Game Save System ---");
@@ -31,46 +39,50 @@ public class Lab16 {
     }
     
     /**
-     * PART 2: Business - Employee Management
-     * Practice: File existence, FileReader, BufferedReader, file deletion, directory listing
+     * PART 2: Employee Management System
+     * Practices: file existence, reading, directory listing, deletion, exception propagation
      */
     public static void part2() {
         System.out.println("--- Part 2: Employee Management System ---");
         
         try {
-            __________________________________;  // Call EmployeeManager.manageEmployeeFiles()
+            // TODO: Run the employee-management routine for the employee data file
+            __________________________________;
             
         } catch (FileNotFoundException e) {
-            __________________________________;  // Catch FileNotFoundException
+            // TODO: Respond when the employee file cannot be found
+            __________________________________;
             
         } catch (IOException e) {
-            __________________________________;  // Catch IOException
+            // TODO: Respond to any other I/O failure
+            __________________________________;
         }
     }
 }
 
 /**
- * PART 1: GameSaveManager Class
- * Practice file operations: create directory, write files, append data, try-catch-finally
+ * PART 1: GameSaveManager
+ * Handles all write-side operations for the save system
  */
 class GameSaveManager {
     private boolean operationSuccessful = false;
     
     /**
-     * TODO: Add try-catch-finally
-     * Try: 
-     *   - Create File object for "saves" directory
-     *   - Use .mkdir() to create the directory
-     *   - Print success message
-     * Catch IOException: Print error message
-     * Finally: Print status
+     * Ensure the save directory is available on disk, creating it only when absent.
+     * Report the final status before returning.
      */
     public void createSaveDirectory() {
-        _________________________________  // TODO: Add try
+        // TODO: Wrap the work below in the appropriate exception-handling structure:
+        //   - Attempt the directory setup
+        //   - Recover from any I/O failure
+        //   - Always print the status line at the end
+        
+        _________________________________
         {
             File saveDir = new File("saves");
             
-            if (!_________________________________ ) {  // TODO: Check if directory exists using .exists()
+            // TODO: Only create the directory when one is not already present
+            if (!_________________________________ ) {
                 saveDir.mkdir();
                 System.out.println("✓ Save directory created!");
             } else {
@@ -78,37 +90,35 @@ class GameSaveManager {
             }
             operationSuccessful = true;
             
-        } _________________________________  // TODO: Catch IOException
+        } _________________________________
         {
             System.out.println("✗ Error creating directory: " + e.getMessage());
             operationSuccessful = false;
             
-        } _________________________________  // TODO: Finally block
+        } _________________________________
         {
             System.out.println("[Status] Directory: " + (operationSuccessful ? "✓ SUCCESS" : "✗ FAILED"));
         }
     }
     
     /**
-     * TODO: Add try-catch-finally
-     * Try:
-     *   - Create File object
-     *   - Use .createNewFile() to create the file
-     *   - Create FileWriter to write data
-     *   - Write header and player data
-     *   - Use BufferedWriter for efficient writing (wrap FileWriter)
-     *   - Close the writer
-     * Catch FileNotFoundException: Print error
-     * Catch IOException: Print error
-     * Finally: Print status
+     * Save the player's data to a file.
+     * Write a header line, then the player data itself.
+     * Distinguish a missing-file failure from any other I/O failure.
+     * Always report status.
      */
     public void savePlayerData(String playerData, String filename) {
         operationSuccessful = false;
         
-        _________________________________  // TODO: Add try
+        // TODO: Wrap the work below in exception handling:
+        //   - One recovery path for a missing file
+        //   - One recovery path for any other I/O failure
+        //   - A status report that always runs at the end
+        
+        _________________________________
         {
             File saveFile = new File(filename);
-            saveFile.createNewFile();  // Create the file if it doesn't exist
+            saveFile.createNewFile();
             
             FileWriter writer = new FileWriter(saveFile);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
@@ -123,39 +133,35 @@ class GameSaveManager {
             System.out.println("✓ Game saved successfully to " + filename);
             operationSuccessful = true;
             
-        } _________________________________  // TODO: Catch FileNotFoundException
+        } _________________________________
         {
             System.out.println("✗ Error: Invalid file path. Cannot save game.");
             operationSuccessful = false;
             
-        } _________________________________  // TODO: Catch IOException
+        } _________________________________
         {
             System.out.println("✗ Error: Write operation failed. " + e.getMessage());
             operationSuccessful = false;
             
-        } _________________________________  // TODO: Finally block
+        } _________________________________
         {
             System.out.println("[Status] Save: " + (operationSuccessful ? "✓ SUCCESS" : "✗ FAILED"));
         }
     }
     
     /**
-     * TODO: Add try-catch-finally
-     * Try:
-     *   - Create FileWriter with APPEND MODE (second parameter = true)
-     *   - Write the game log entry
-     *   - Close the writer
-     * Catch IOException: Print error
-     * Finally: Print status
-     * 
-     * Note: Append mode = true allows adding data without overwriting
+     * Add a log entry to an existing save file without losing any of the existing contents.
+     * Always report status.
      */
     public void appendGameLog(String filename, String logEntry) {
         operationSuccessful = false;
         
-        _________________________________  // TODO: Add try
+        // TODO: Wrap the work below in exception handling (attempt, recover, report)
+        
+        _________________________________
         {
-            FileWriter writer = new FileWriter(filename, __________);  // TODO: true for append mode
+            // TODO: Open a writer configured so that existing data in the file is preserved
+            FileWriter writer = new FileWriter(filename, __________);
             
             writer.write("\n[LOG] " + logEntry);
             writer.close();
@@ -163,12 +169,12 @@ class GameSaveManager {
             System.out.println("✓ Log entry added: " + logEntry);
             operationSuccessful = true;
             
-        } _________________________________  // TODO: Catch IOException
+        } _________________________________
         {
             System.out.println("✗ Error: Could not append log. " + e.getMessage());
             operationSuccessful = false;
             
-        } _________________________________  // TODO: Finally block
+        } _________________________________
         {
             System.out.println("[Status] Append: " + (operationSuccessful ? "✓ SUCCESS" : "✗ FAILED"));
         }
@@ -176,55 +182,51 @@ class GameSaveManager {
 }
 
 /**
- * PART 2: EmployeeManager Class
- * Practice: File existence, FileReader, BufferedReader, file deletion, directory listing, throws
+ * PART 2: EmployeeManager
+ * Handles reads, directory listing, and cleanup
  */
 class EmployeeManager {
     
     /**
-     * TODO: Add throws to method signature
-     * throws FileNotFoundException, IOException
-     * 
-     * Tasks:
-     * 1. Check if "employees" directory exists using .exists()
-     * 2. If not, create it with .mkdir()
-     * 3. Check if "employees/employee_data.txt" exists
-     * 4. Read the file using FileReader and BufferedReader
-     * 5. Print first line using .readLine()
-     * 6. List all files in "employees" directory using .listFiles()
-     * 7. Print each filename
-     * 8. Optionally delete a backup file if it exists
-     * 
-     * Let exceptions propagate - don't catch them here
+     * Manage the employee files for the given path:
+     *   - Ensure the employees directory is set up
+     *   - Read the employee file and display the first record
+     *   - List every file in the employees directory
+     *   - Remove any leftover backup file
+     * Let exceptions bubble up to the caller instead of handling them here.
      */
+    // TODO: Declare that this method can propagate file- and I/O-related exceptions
     public static void manageEmployeeFiles(String filename) _______________ {
         
-        // Check and create employees directory
+        // Set up the employees directory
         File empDir = new File("employees");
-        if (!___________________________________) {  // TODO: Check if directory exists
+        // TODO: Create the directory only when one is not already present
+        if (!___________________________________) {
             empDir.mkdir();
             System.out.println("✓ Created employees directory");
         }
         
-        // Check if file exists
+        // Verify the employee file is on disk before reading
         File empFile = new File(filename);
-        if (!___________________________________) {  // TODO: Use .exists() to check
+        // TODO: Trigger the missing-file signal when the employee file is not there
+        if (!___________________________________) {
             throw new FileNotFoundException("Employee file not found: " + filename);
         }
         
         System.out.println("✓ Employee file found!");
         
-        // Read file using FileReader and BufferedReader
+        // Open the file for reading, wrapped for line-level access
         FileReader reader = new FileReader(empFile);
         BufferedReader bufferedReader = new BufferedReader(reader);
         
-        String firstLine = _________________________________;  // TODO: Use .readLine()
+        // TODO: Pull the first line out of the file
+        String firstLine = _________________________________;
         System.out.println("✓ First employee record: " + firstLine);
         
         bufferedReader.close();
         reader.close();
         
-        // List all files in directory
+        // List every file in the employees directory
         File[] files = empDir.listFiles();
         System.out.println("✓ Files in employees directory:");
         if (files != null) {
@@ -233,9 +235,10 @@ class EmployeeManager {
             }
         }
         
-        // Delete backup file if it exists
+        // Clean up any leftover backup
         File backup = new File("employees/employee_backup.txt");
-        if (___________________________________) {  // TODO: Check if backup exists
+        // TODO: Only attempt removal when a backup is actually present
+        if (___________________________________) {
             backup.delete();
             System.out.println("✓ Old backup deleted");
         }
